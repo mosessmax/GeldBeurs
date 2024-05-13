@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "yarn tsc",
+    "build": "node clean-dist.js && yarn tsc",
+    "prestart": "yarn build",
     "start": "node dist/index.js",
-    "dev": "tsc -w & nodemon dist/index.js", 
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "preserve": "yarn build",
+    "serve": "concurrently \"yarn tsc -w\" \"nodemon dist/index.js\""
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
   "dependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.11",
+    "concurrently": "^8.2.2",
     "express": "^4.19.2",
     "typescript": "^5.4.5"
   },
